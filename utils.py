@@ -63,7 +63,13 @@ PERIOD = PRICE_HISTORY.Period
 PERIOD_TYPE = PRICE_HISTORY.PeriodType
 
 
-def get_price_history(ticker: str): #, period_type, period, frequency_type, frequency):
+def get_price_history(
+        ticker: str, 
+        period_type: PERIOD_TYPE, 
+        period: PERIOD, 
+        frequency_type: FREQUENCY_TYPE, 
+        frequency: FREQUENCY
+    ):
     """
     format of r.json()
         {
@@ -83,10 +89,10 @@ def get_price_history(ticker: str): #, period_type, period, frequency_type, freq
     """
     r: httpx.Response = CLIENT.get_price_history(
         ticker, 
-        period_type=PERIOD_TYPE.YEAR,
-        period=PERIOD.ONE_YEAR, 
-        frequency_type=FREQUENCY_TYPE.DAILY, 
-        frequency=FREQUENCY.DAILY, 
+        period_type=period_type,
+        period=period, 
+        frequency_type=frequency_type, 
+        frequency=frequency, 
         need_extended_hours_data=False
         )
     assert r.status_code == httpx.codes.OK, r.raise_for_status()
