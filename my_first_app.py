@@ -25,7 +25,15 @@ def plot_candles_ticker(ticker: str):
     df = pd.DataFrame.from_records(candles)
     df.index = pd.DatetimeIndex(df['datetime'])
     df.index.name = 'datetime'
-    mpf.plot(df, type='candle', mav=4, volume=True, show_nontrading=True)
+    mpf.plot(
+        df, 
+        type='candle', 
+        style='charles',
+        title=ticker,
+        mav=(3, 6, 9), 
+        volume=True, 
+        show_nontrading=True
+    )
     return None
 
 
