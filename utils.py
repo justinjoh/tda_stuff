@@ -7,6 +7,19 @@ import httpx
 import datetime
 import atexit
 import json
+from enum import Enum
+
+
+WEEKDAYS = {
+    0: 'monday',
+    1: 'tuesday',
+    2: 'wednesday',
+    3: 'thursday',
+    4: 'friday',
+    5: 'saturday',
+    6: 'sunday'
+}
+
 
 def _get_secrets(secrets_location: str):
     """
