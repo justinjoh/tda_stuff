@@ -100,6 +100,8 @@ def get_price_history(
         "symbol": "string"
         }
     """
+    if not is_valid_history(period_type, period, frequency_type, frequency):
+        raise ValueError("Period and frequency combinations do not form a valid request")
     r: httpx.Response = CLIENT.get_price_history(
         ticker, 
         period_type=period_type,
@@ -149,3 +151,4 @@ def is_valid_history(period_type: PERIOD_TYPE, period: PERIOD, frequency_type: F
     elif period_type == PERIOD_TYPE.YEAR_TO_DATE:
         if period not in [PERIOD.YEAR_TO_DATE]:
             return False
+    return True

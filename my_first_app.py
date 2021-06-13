@@ -24,6 +24,7 @@ def dummy_backtest(ticker: str):
     """
     Using this to test the most basic possible aspects of backtesting
     e.g. checking prices at certain dates, working with some version of start/end capital, etc.
+    Uses a silly fake strategy of buying and selling every Monday at market open and close
     """
     candles = get_price_history(
         ticker,
